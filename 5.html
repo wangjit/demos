@@ -1,55 +1,59 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>入门8代码5</title>
+	<style>
+		.box {
+			width: 600px;
+			margin: 0 auto;
+		}
+		.box>div {
+			margin-top: 30px;
+		}
+		.card {
+			width: 300px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+		}
+		.card>img {
+			width: 100%;
+			opacity: 0.75;
+		}
+		.card .detail {
+			padding: 1px 16px;
+		}
+		.card .detail h3{
+			font-size: 20px;
+			font-weight: bold;
+			margin: 10px 0px;
+			
+
+		}
+		.card .detail.text {
+			text-align: center;
+		}
+		.card .detail p {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	</style>
 </head>
 <body>
-	<div class="login">
-	<form action="/abc" method = "post">
-		 <div class="username">
-		   <lable for="username">姓名：</lable>
-		   <input type="text" name="username" placeholder="用户名">
-		 </div>
-
-		 <div class="password">
-		   <lable for="password">密码：</lable>
-		   <input type="password" name="password" placeholder="输入密码">
-		 </div>
-
-		 <div class="sex">
-		   <lable for="sex">性别：</lable>
-		   <input type="radio" name="sex" value="男">男
-		   <input type="radio" name="sex" value="女">女
-		 </div>
-
-		 <div class="sexOrientation">
-		   <lable for="sexOrientation">取向：</lable>
-		   <input type="radio" name="sexOrientation" value="男">男
-		   <input type="radio" name="sexOrientation" value="女">女
-		 </div>
-
-		 <div class="like">
-		   <lable for="like">爱好：</lable>
-		   <input type="checkbox" name="like" value="dota">dota
-		   <input type="checkbox" name="like" value="旅游">旅游
-		   <input type="checkbox" name="like" value="宠物">宠物
-		 </div>
-		 <div class="comment">
-		   <lable for="comment">评论：</lable>
-		   <textarea name="comment" id="" cols="30" rows="10" class="comment" placeholder="ddd"></textarea>
-		 </div>
-
-		 <div class="car">
-		   <select name="car">
-			  <option value="萨博">萨博</option>
-			  <option value="宝马">宝马</option>
-			  <option value="奔驰">奔驰</option>
-		   </select>
-		   <input type="submit" value="提交">
-		 </div>
+	<div class="box">
+		<div class="card">
+			<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/4b0637bf-eb96-4f3e-97f3-203a9b0b1e0c" alt="">
+			<div class="detail">
+				<h3>小饥</h3>
+				<p>前端工程师一枚，爱生活，爱和平，爱世界</p>
+			</div>
 		</div>
-	</form>
-</div>
+		<div class="card">
+			<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6"  alt="">
+			<div class="detail text">
+				<p>风景如画</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
