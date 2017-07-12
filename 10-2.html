@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>10-2</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: none; 
+    }
+
+    .table>form input[type=text],input[type=textarea] {
+      border: none;
+    }
+    .box {
+      width: 600px;
+      margin: 0 auto;
+    }
+    .table {
+      margin-top: 30px;
+      box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .table>h2 {
+      width: 570px;
+      background-color: #009688;
+      color: #fff;
+      padding: 15px;
+    }
+    .table>form {
+      margin: 16px;
+    }
+    .table>form>div{
+      margin-top: 16px;
+      overflow: auto;
+    }
+    .text{
+      
+    }
+    .table>form input[type=text],input[type=textarea] {
+      display: block;
+      width: 100%;
+      outline: none;
+      border-bottom: 1px solid #757575;
+      padding: 10px;
+    }
+    lable,input[type=checkbox],input[type=radio] {
+      color: #757575;
+    }
+    .area {
+      height: 60px;
+    }
+    .module4 div {
+      
+      width: 50%;
+      display: inline-block;
+      font-size: 16px;
+      vertical-align: top;
+    }
+    .module4 {
+      font-size: 0;
+    }
+    .module4 div>* {
+      margin-top: 10px;
+      margin-left:5px;
+    }
+    .module5 button {
+      background-color: #009688;
+      color: #fff;
+      padding: 8px 16px;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="table">
+      <h2>信息收集表</h2>
+      <form action="#" method="post">
+        <div class="module1 text">
+          <lable for="name">姓名</lable>
+          <input type="text" name="name">
+        </div>
+        <div class="module2 text">
+          <lable for="QQ">QQ</lable>
+          <input type="text" name="QQ">
+        </div>
+        <div class="module3 text">
+          <lable for="yourwords">要说的话</lable>
+          <input class="area" type="textarea" name="yourwords">
+        </div>
+        <div class="module4">
+          <div id="drink">
+            <input type="checkbox" name="drink" id="Milk" value="Milk">
+            <lable for="Milk">Milk</lable>
+            <br>
+            <input type="checkbox" name="drink" id="Sugar" value="Sugar">
+            <lable for="Sugar">Sugar</lable>
+            <br>
+            <input type="checkbox" name="drink" id="Lemon" value="Lemon">
+            <lable for="Lemon">Lemon</lable>
+          </div>
+          <div id="sex">
+            <input type="radio" name="sex" id="Male" value="Male" checked>
+            <lable for="Male">Male</lable>
+            <br>
+            <input type="radio" name="sex" id="Female" value="Female">
+            <lable for="Female">Female</lable>
+          </div>
+        </div>
+        <div class="module5">
+          <button>提交</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
