@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-1(float)</title>
+    <style>
+        .div1{
+            background-color: lightblue;
+            padding: 10px;
+            text-align: center;
+        }
+        .div2{
+            margin: 10px auto;
+            display: inline-block;
+        }
+        span{
+            float: left;
+            border: 1px solid;
+            background-color: papayawhip;
+            cursor: pointer;
+        }
+        .clearfix {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        span:nth-child(1) {
+            border-radius: 5px 0 0 5px;
+            border-right: 0;
+        }
+        span:nth-child(2) {
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">
+            <span>按钮1</span>
+            <span>按钮2</span>
+        </div>
+    </div>
+</body>
+</html>

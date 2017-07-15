@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-5</title>
+    <style>
+        .box {
+            border-bottom: 1px solid #c0c0c0;
+            border-top: 1px solid #c0c0c0;
+            width: 800px;
+            margin: 0 auto;
+        }
+        .img1 {
+            float: left;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        .img2 {
+            float: right;
+            width: 250px;
+            height: 190px;
+            border-radius: 8px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        span {
+            float: left;
+            margin: 40px 0 0 10px;
+        }
+        .time {
+            color: #909090;
+        }
+        h2 {
+            color: #444141;
+            clear: left;
+            position: relative;
+            top: 10px;
+        }
+        .clearfix::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        p {
+            color: #444141;
+            width: 540px;
+            line-height: 33px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp:2; 
+        }
+        a {
+            border: 1px solid salmon;
+            border-radius: 4px;
+            color: salmon;
+            text-decoration: none;
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box clearfix">
+        <img class="img1" src="http://a1.qpic.cn/psb?/V11GFjRC0HOEaC/6I5F6zQJWmX2XdLy5BjUAFK4APjcwSuoJM7pRUmCHnk!/b/dD4BAAAAAAAA&bo=4gPiA.ID4gMRCT4!&rf=viewer_4" alt="">
+        <span class="name">林慕之</span>
+        <span class="time">8 小时前</span>
+        <img class="img2" src="http://a2.qpic.cn/psb?/V11GFjRC0HOEaC/0r484X2WwdbKt03z1I1dYArsuXB3K0IzsK*3lhYe84c!/b/dD8BAAAAAAAA&bo=sgIIArICCAIRCT4!&rf=viewer_4" alt="">
+        <div class="detail">
+            <h2>坚持“读书”这些年，人生真的太值了！</h2>
+            <p>2017.5.27|NO.18 前几天，在国内大学的朋友给我发来微信。 她说：5年前，刚进大学的时候，我们是一样的起点，如果当时我和你一样坚持不断地坚持学习balabalabala</p>
+            <a href="#">读书</a>
+        </div>
+    </div>
+</body>
+</html>

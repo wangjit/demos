@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-3(float)</title>
+    <style>
+        div {
+            margin: 0 auto;
+            height: 650px;
+            border: 1px solid;
+        }
+        .right {
+            float: right;
+            background-color: cornflowerblue;
+            width: 100px;
+            height: 200px;
+        }
+        .left {
+            float: left;
+            background-color: palegreen;
+            width: 130px;
+            height: 250px;
+        }
+        main {
+            height: 500px;
+            background-color: crimson;
+            margin-left: 140px;
+            margin-right: 110px;
+        }
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="clearfix">
+        <aside class="right">left</aside>
+        <aside class="left">right</aside>
+        <main>main</main>
+    </div>
+</body>
+</html>

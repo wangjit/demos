@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-1(flex)</title>
+    <style>
+        .div1{
+            background-color: lightblue;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        span{
+            border: 1px solid;
+            background-color: papayawhip;
+            cursor: pointer;
+        }
+        span:nth-child(1) {
+            border-radius: 5px 0 0 5px;
+            border-right: 0;
+        }
+        span:nth-child(2) {
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        
+            <span>按钮1</span>
+            <span>按钮2</span>
+        
+    </div>
+</body>
+</html>

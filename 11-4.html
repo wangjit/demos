@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-4</title>
+    <style>
+        .layout {
+            margin: 0 auto;
+            width: 800px;
+        }
+        h1 {
+            color: #666;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        ul,li {
+            margin: 0;
+            padding: 0;
+        }
+        .container .card {
+            width: 260px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            float: left;
+            list-style: none;
+            margin-left: 10px;
+            margin-top: 30px;
+        }
+        .container::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .card>img {
+            width: 100%;
+            opacity: 0.75;
+        }
+        .card .detail {
+            padding: 1px 16px;
+        }
+        .card .detail p {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .card .detail {
+            text-align: center;
+        }
+        .container {
+            margin-left: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <h1>风景列表</h1>
+        <ul class="container">
+            <li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+            <li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li><li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li><li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li><li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li><li class="card">
+                <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/283a4100-10cd-4208-a3b5-4030ec03acf6" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+        </ul>
+    </div>
+</body>
+</html>

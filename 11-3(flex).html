@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-3(flex)</title>
+    <style>
+        div {
+            
+            border: 1px solid;
+            display: flex;
+            justify-content: space-between;
+        }
+        .right {
+            background-color: cornflowerblue;
+            width: 100px;
+            height: 200px;
+            order: 3;
+        }
+        .left {
+            background-color: palegreen;
+            width: 130px;
+            height: 250px;
+            order: 1;
+        }
+        main {
+            height: 500px;
+            flex-grow: 1;
+            background-color: crimson;
+            margin: 0 10px;
+            order: 2;
+            flex-basis: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="clearfix">
+        <aside class="right">left</aside>
+        <aside class="left">right</aside>
+        <main>main</main>
+    </div>
+</body>
+</html>
