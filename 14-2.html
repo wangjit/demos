@@ -14,8 +14,7 @@
         margin: 0 auto;
       }
       .ct1 {
-        position: relative;
-        top: 50px;
+        margin: 70px 0;
       }
       .ct1>.circle {
         width: 100px;
@@ -47,30 +46,27 @@
       }
       .ct1>.p1 {
         font-size: 40px;
-        position: relative;
-        bottom: 50px;
-        left: 25px;
+        margin-left: 120px;
+        margin-top: -10px;
       }
       .ct1>.p2 {
-        position: relative;
-        bottom: 90px;
-        left: 125px;
+        margin-top: -40px;
+        margin-left: 122px;
         font-weight: bold;
       }
       .ct2 {
         float: right;
         width: 380px;
+        margin-top: -40px;
       }
       .ct2>h4 {
         border-bottom: 5px solid;
-        position: relative;
-        top: 10px;
+        margin-top: 20px;
       }
       .ct2 span {
         position: relative;
         right: 40px;
         font-weight: bold;
-        display: inline-block;
       }
       .ct2 li{
         list-style: none;
@@ -79,20 +75,14 @@
         position: relative;
         bottom: 37px;
       }
-      .ct2 li:nth-child(2) {
-        position: relative;
-        bottom: 50px;
+      .ct2 li:nth-child(1) {
+        margin-top: -10px;
       }
-      .ct2 li:nth-child(3) {
-        position: relative;
-        bottom: 100px;
-      }
-      .ct2 li:nth-child(4) {
-        position: relative;
-        bottom: 150px;
+      .ct2 li:not(.first-li) {
+        margin-top: -50px;
       }
       .ct3 {
-        margin-top: 50px;
+        margin-top: 100px;
       }
       .ct3>h4 ,.ct4>h4 ,.ct5>h4 {
         width: 400px;
@@ -110,7 +100,7 @@
       .ct3>ul::before {
         content: '';
         float: left;
-        height: 358px;
+        height: 335px;
         border-left: 3px solid #c7c3c3;
         position: relative;
         right: 35px;
@@ -118,7 +108,6 @@
       }
       .ct3 li::before ,.ct4 li::before{
         content: '';
-        display: block;
         width: 10px;
         height: 10px;
         background-color: black;
@@ -136,7 +125,7 @@
       .ct4>ul::before {
         content: '';
         float: left;
-        height: 250px;
+        height: 246px;
         border-left: 3px solid #c7c3c3;
         position: relative;
         right: 35px;
@@ -226,7 +215,7 @@
         <div class="ct2">
             <h4>CONTACTS</h4>
             <ul>
-                <li class="first-item">
+                <li class="first-li">
                     <span class="A">A</span>
                     <p class="A">59 Somewhere Street NY.USA</p>
                 </li>
