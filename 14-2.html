@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人简历页面</title>
+    <style>
+        
+      body {
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+      }
+      .wrapper {
+        width: 900px;
+        margin: 0 auto;
+        }
+      .ct1 {
+          position: relative;
+          top: 50px;
+      }
+      .ct1>.circle {
+          width: 100px;
+          height: 100px;
+          border-radius: 60px;
+          background-color: black;
+          float: left;
+      }
+      .ct1>.line {
+        width: 60px;
+        border: 1px solid #fff;
+        transform: rotateZ(-45deg);
+        position: relative;
+        top: 50px;
+        left: 20px;
+      }
+      .ct1 span {
+          color: #fff;
+      }
+      .D {
+        position: relative;
+        top: 20px;
+        right: 75px;
+      }
+      .S {
+        position: relative;
+        top: 52px;
+        right: 47px;
+      }
+      .ct1>.p1 {
+          font-size: 40px;
+          position: relative;
+          bottom: 50px;
+          left: 25px;
+      }
+      .ct1>.p2 {
+          position: relative;
+          bottom: 90px;
+          left: 125px;
+          font-weight: bold;
+      }
+      .ct2 {
+          float: right;
+          width: 380px;
+      }
+      .ct2>h4 {
+          border-bottom: 5px solid;
+          position: relative;
+          top: 10px;
+      }
+      .ct2 span {
+          position: relative;
+          right: 40px;
+          font-weight: bold;
+          display: inline-block;
+      }
+      .ct2 li{
+          list-style: none;
+      }
+      .ct2 p {
+        position: relative;
+        bottom: 37px;
+      }
+      .ct2 li:nth-child(2) {
+        position: relative;
+        bottom: 50px;
+      }
+      .ct2 li:nth-child(3) {
+        position: relative;
+        bottom: 100px;
+      }
+      .ct2 li:nth-child(4) {
+        position: relative;
+        bottom: 150px;
+      }
+      .ct3 {
+          margin-top: 50px;
+      }
+      .ct3>h4 ,.ct4>h4 {
+          width: 500px;
+          padding: 15px 0;
+          border-bottom: 1px solid #ccc;
+          margin: 40px 0;
+      }
+      .ct3 .time ,.ct4 .time {
+          color: #ccc;
+      }
+      .ct3 li,.ct4 li{
+          list-style: none;
+      }
+    
+      .ct3>ul::before {
+          content: '';
+          float: left;
+          height: 358px;
+          border-left: 3px solid #c7c3c3;
+          position: relative;
+          right: 35px;
+          top: 5px;
+      }
+      .ct3 li::before ,.ct4 li::before{
+          content: '';
+          display: block;
+          width: 10px;
+          height: 10px;
+          background-color: black;
+          border: 1px solid ;
+          border-radius: 60px;
+          float: left;
+          position: relative;
+          right: 42.5px;
+          top: 4px;
+      }
+      .ct3 span ,.ct4 span{
+          position: relative;
+          right: 11px;
+      }
+      .ct4>ul::before {
+          content: '';
+          float: left;
+          height: 250px;
+          border-left: 3px solid #c7c3c3;
+          position: relative;
+          right: 35px;
+          top: 5px;
+      }
+      .ct4 li>p:nth-of-type(1) {
+          color: #ccc;
+      }
+      @font-face {
+          font-family: 'iconfont';  /* project id 349938 */
+          src: url('//at.alicdn.com/t/font_hdx4zty45ifcg14i.eot');
+          src: url('//at.alicdn.com/t/font_hdx4zty45ifcg14i.eot?#iefix') format('embedded-opentype'),
+          url('//at.alicdn.com/t/font_hdx4zty45ifcg14i.woff') format('woff'),
+          url('//at.alicdn.com/t/font_hdx4zty45ifcg14i.ttf') format('truetype'),
+          url('//at.alicdn.com/t/font_hdx4zty45ifcg14i.svg#iconfont') format('svg');
+          }
+
+      .iconfont {
+          font-family:"iconfont" !important;
+          font-size:16px;
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="ct2">
+            <h4>CONTACTS</h4>
+            <ul>
+                <li class="first-item">
+                    <span class="A">A</span>
+                    <p class="A">59 Somewhere Street NY.USA</p>
+                </li>
+                <li>
+                    <span class="M">M</span>
+                    <p class="M">12 395 394 3048</p>
+                </li>
+                <li>
+                    <span class="E">E</span>
+                    <p class="E">steve@gmail.com</p>
+                </li>
+                <li>
+                    <span class="B">B</span>
+                    <p class="B">www.behance.net/design</p>
+                </li>
+            </ul>
+        </div>
+        <div class="ct1">
+            <div class="circle"></div>
+            <div class="line"></div>
+            <span class="D">D</span>
+            <span class="S">S</span>
+            <p class="p1">David Smith</p>
+            <p class="p2">Graphic & Web Designer</p>
+        </div>
+        <div class="ct3">
+            <h4>WORK EXPERIENCE</h4>
+            <ul>
+                <li>
+                    <span>Marketplaces /</span>
+                    <span class="time">2012-2013</span>
+                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.Typi non habent claritatem;est usus legentis in iis qui facit.Nam liber tempor cum coluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer position assum.</p>
+                </li>
+                <li>
+                    <span>Apple Inc./</span>
+                    <span class="time">2013-2014</span>
+                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.Typi non habent claritatem;est usus legentis in iis qui facit.Nam liber tempor cum coluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer position assum.</p>
+                </li>
+                <li>
+                    <span>Aroma Bar Network/</span>
+                    <span class="time">2014-now</span>
+                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.Typi non habent claritatem;est usus legentis in iis qui facit.Nam liber tempor cum coluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer position assum.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="ct4">
+            <h4>EDUCATION</h4>
+            <ul>
+                <li>
+                    <span>College /</span>
+                    <span class="time">2008-2011</span>
+                    <p>Visual Design Communication</p>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,vel illum dolore eu feugiat nulla facilisis at vero.Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse.</p>
+                </li>
+                <li>
+                    <span>Unibersity /</span>
+                    <span class="time">2011-2014</span>
+                    <p>Infomation System</p>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,vel illum dolore eu feugiat nulla facilisis at vero.Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="ct5">
+            <h4>EXTRA CURRICULAR ACTIVITIES</h4>
+            <span class="iconfont">&#xe7b0;</span>
+            <span>Volunteer</span>
+            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectoorum.</p>
+            <span class="iconfont"></span>
+            <span>Volunteer</span>
+            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectoorum.</p>
+        </div>
+    </div>
+</body>
+</html>
