@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>JS Bin</title>
+
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  
   <style>
     * {
       box-sizing: border-box;
@@ -26,46 +28,54 @@
     }
     header {
       width: 100%;
-      background-color: rgba(51,51,51,1);
-      text-align: center;
+      background-color: #222222;
       padding-top: 20px;
       padding-bottom: 20px;
+      text-align: center;
     }
     .nav{
       display: inline-block;
       max-width: 1140px;
     }
-    .nav-a,.nav-a1 {
+    .nav-a, .nav-b {
       display: inline-block;
     }
     .nav-a {
       width: 210px;
       float: left;
     }
-    .nav-a1 {
-      width: 570px;
-      float: right;
+    .nav-b {
+      width: 928px;
       margin-top: 13px;
     }
-    .a1 {
-      margin: 100px 0;
+    .nav-bs {
+      float: right;
       color: #fff;
-      margin: 0 0 0 30px;
       letter-spacing: 1px;
       font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     }
-    .nav>a:hover {
+    .nav-b a:not(.first-b) {
+      margin-left:30px;
+    }
+    .nav a:hover {
       color: #fed136;
     }
-    .first-a {
+    .nav-b a:active {
+      color: #fff;
+      background-color: #fed136;
+      border-radius: 4px;
+    }
+    .nav-as {
       color: #fed136;
       font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
       font-size: 2em;
     }
+    
+
     main {
       overflow: auto;
     }
-    .ct1 {
+    .homepage {
       
       background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/header-bg.jpg);
       background-position: center center;
@@ -76,7 +86,7 @@
       text-align: center;
       padding: 300px 0;
     }
-    .ct1>.intro-text>.intro-lead-in {
+    .homepage > .intro-text > .intro-lead-in {
       font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
       font-style: italic;
       font-size: 40px;
@@ -84,7 +94,7 @@
       margin-bottom: 25px;
       
     }
-    .ct1>.intro-text>.intro-heading {
+    .homepage > .intro-text > .intro-heading {
       font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
       text-transform: uppercase;
       font-weight: 700;
@@ -93,7 +103,7 @@
       margin-bottom: 50px;
       
     }
-    .ct1>.intro-text>a,#CONTACT a {
+    .homepage > .intro-text > a ,#CONTACT a {
         color: #fff;
         background-color: #fed136;
         font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -153,21 +163,20 @@
       display: inline-block;
       width: 380px;
     }
-
     .text-muted {
       font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
       color: #777;
       font-size: 14px;
       line-height: 1.75;
     }
-
-
+    #PORTFOLIO {
+      background-color: #f7f7f7;
+    }
     .card1 {
         background:url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/roundicons.png);
     }
     .card2 {
       background:url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/startup-framework.png);
-      
     }
     .card3 {
       background:url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/treehouse.png);
@@ -183,41 +192,38 @@
     }
     .card-hover {
       font-family:'iconfont';
-      width:379px;
-      height:274px;
+      width: 380px;
+      height: 275px;
       background: #f9d146;
-      display:inline-block;
-      line-height:260px;
-      font-size:60px;
+      display: inline-block;
+      line-height: 260px;
+      font-size: 60px;
       color: white;
-      font-weight:bold;
-      opacity:0.9;
-      transition: all ease .5s;
-      display:none;
+      font-weight: bold;
+      opacity: 0.9;
+      display: none;
     }
     .portfolio-card div:hover .card-hover{
-      display:block;
-      cursor:pointer;
+      display: block;
+      cursor: pointer;
     }
-    #PORTFOLIO {
-      background-color: #f7f7f7;
+    .portfolio-card div:hover {
+      transition: all ease .5s;
     }
     .portfolio-card {
       background-color: #fff;
       margin: 0 15px 30px 15px;
     }
-
-    .portfolio-card> div {
-      width:400px;
-      height:274px;
-      background-size:contain;
-      background-repeat:no-repeat;
+    .portfolio-card > div {
+      width: 401px;
+      height: 275px;
+      background-size: contain;
+      background-repeat: no-repeat;
     }
     #PORTFOLIO h4 {
       font-size: 18px;
       margin-top:27px;
     }
-
     #PORTFOLIO .portfolio-card:nth-child(7){
       margin-bottom: 180px;
     }
@@ -268,7 +274,7 @@
       height: 100%;
       z-index: -1;
     }
-    .timeline h4{
+    .timeline h4 {
       margin: 5px 0;
     }
     .timeline .last-img {
@@ -283,7 +289,7 @@
       text-align: center;
       border-radius: 50%;
     }
-    .timeline .last-img>h4 {
+    .timeline .last-img > h4 {
       color: #fff;
     }
 
@@ -298,7 +304,6 @@
       display: inline-block;
       width: 380px;
       margin: 30px 0;
-      
     }
     .team-iconfont {
       font-family:"iconfont" !important;
@@ -324,8 +329,7 @@
       border: 7px solid #fff;
       border-radius: 50%;
     }
-
-    aside>.aside-img {
+    aside > .aside-img {
       display: inline-block;
       width: 285px;
       cursor: pointer;
@@ -338,17 +342,15 @@
       background-position: center center;
       background-size: cover;
     }
-    #CONTACT>.contact-ct>.contact-form>form>input{
+    #CONTACT > .contact-ct > .contact-form > form > input{
       width: 550px;
       height: 50px;
       border-radius:4px;
       font-size: 18px;
-      display: inline-block;
       margin:29px auto;
     }
     textarea {
       display: inline-block;
-      
       border-radius:4px;
       font-size: 18px;
       font-family:helvetica;
@@ -362,7 +364,6 @@
     }
     #CONTACT h2 {
       color: #fff;
-      
     }
     .contact-btn {
       padding: 100px 0 100px 0;
@@ -374,14 +375,16 @@
     footer div {
       display: inline-block;
       width: 380px;
+      margin: 10px 0;
     }
-    footer{
+    footer {
       position: relative;
-      bottom: 64px;
+      bottom: 75px;
       font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     }
     footer a {
       color: #fed136;
+      margin-left: 10px;
     }
     footer a:hover {
       color: black;
@@ -393,21 +396,19 @@
     <header>
       <div class="nav">
         <div class="nav-a">
-        <a href="#nav" class = "first-a">Start Bootstrap</a>
+          <a href="#nav" class = "nav-as">Start Bootstrap</a>
+        </div>
+        <div class="nav-b">
+          <a href="#CONTACT" class = "nav-bs">CONTACT</a>
+          <a href="#TEAM" class = "nav-bs">TEAM</a>
+          <a href="#ABOUT" class = "nav-bs">ABOUT</a>
+          <a href="#PORTFOLIO" class = "nav-bs">PORTFOLIO</a>
+          <a href="#SERVICES" class = "nav-bs first-b">SERVICES</a>
+        </div>
       </div>
-       <div class="nav-a1">
-         <a href="#SERVICES" class = "a1 a11">SERVICES</a>
-          <a href="#PORTFOLIO" class = "a1">PORTFOLIO</a>
-          <a href="#ABOUT" class = "a1">ABOUT</a>
-          <a href="#TEAM" class = "a1">TEAM</a>
-          <a href="#CONTACT" class = "a1">CONTACT</a>
-       </div>
-      </div>
-      
-          
     </header>
     <main>
-      <div class="ct1">
+      <div class="homepage">
         <div class = "intro-text">
           <div class="intro-lead-in">Welcome To Our Studio!</div>
           <div class="intro-heading">IT'S NICE TO MEET YOU</div>
@@ -450,36 +451,36 @@
           <h4>Round Icons</h4>
           <p class = "section-subheading">Graphic Design</p>
         </div>
-        <div class="portfolio-card">
-          <div class="card2">
+        <div class = "portfolio-card">
+          <div class = "card2">
             <div class = "card-hover">&#xe685;</div>
           </div>
           <h4>Startup Framework</h4>
           <p class = "section-subheading">Website Design</p>
         </div>
-        <div class="portfolio-card">
-          <div class="card3">
+        <div class = "portfolio-card">
+          <div class = "card3">
             <div class = "card-hover">&#xe685;</div>
           </div>
           <h4>Treehouse</h4>
           <p class = "section-subheading">Website Design</p>
         </div>
-        <div class="portfolio-card">
-          <div class="card4">
+        <div class = "portfolio-card">
+          <div class = "card4">
             <div class = "card-hover">&#xe685;</div>
           </div>
           <h4>Golden</h4>
           <p class = "section-subheading">Website Design</p>
         </div>
-        <div class="portfolio-card">
-          <div class="card5">
+        <div class = "portfolio-card">
+          <div class = "card5">
             <div class = "card-hover">&#xe685;</div>
           </div>
           <h4>Escape</h4>
           <p class = "section-subheading">Website Design</p>
         </div>
-        <div class="portfolio-card">
-          <div class="card6">
+        <div class = "portfolio-card">
+          <div class = "card6">
             <div class = "card-hover">&#xe685;</div>
           </div>
           <h4>Dreams</h4>
