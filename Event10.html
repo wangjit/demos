@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    *{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .wrap{
+      min-width: 480px;
+      text-align: center;
+    }
+    .tab-ct{
+      margin: 100px;
+      border: 1px solid #ccc;
+      background-color: #333;
+      color: #fff;
+      border-radius: 4px;
+    }
+    .tab-ct>.header>.active{
+      background-color: #fed136;
+      color: #000;
+      border-radius: 4px;
+    }
+    .tab-ct>.header>li{
+      float: left;
+      margin: 10px 10px 10px 10px;
+      cursor: pointer;
+      
+      padding: 10px 20px;
+      border-radius: 4px;
+    }
+    .tab-ct>.header>li:hover{
+      color: #fed136;
+    }
+    .tab-ct>.header>.active:hover{
+      color: #fff;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .tab-ct>.content>li{
+      display: none;
+      
+    }
+    .tab-ct>.content>li.active{
+      margin: 0 10px 10px 10px;
+      padding: 40px 0;
+      display: block;
+      background-color: #fcfaf2;
+      color: #414141;
+      border-radius: 4px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+      <div class="tab-ct">
+        <ul class="header clearfix">
+          <li class="active">tab1</li>
+          <li>tab2</li>
+          <li>tab3</li>
+        </ul>
+        
+        <ul class="content">
+          <li class="active">ct1</li>
+          <li>ct2</li>
+          <li>ct3</li>
+        </ul>
+      </div>
+  </div>
+  
+
+  <script>
+    function $(selector){
+      return document.querySelectorAll(selector);
+    }
+
+    $('.header > li').forEach(function(e){
+      e.addEventListener('click',function(){
+        $('.header > li').forEach(function(node){
+          node.classList.remove('active');
+        });
+        this.classList.add('active');
+        var index = [].indexOf.call($('.header>li'),this);
+        $('.content > li').forEach(function(node){
+          node.classList.remove('active');
+        });
+        $('.content > li')[index].classList.add('active');
+      });
+    });
+
+
+  </script>
+</body>
+</html>
