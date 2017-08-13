@@ -43,16 +43,16 @@
     </div>
 
     <script>
-        /*function $(selector) {
-            return document.querySelectorAll(selector);
-        }*/
-        var btn = document.querySelector('#load-more');
-        var addInThis = document.querySelector('#addInThis');
+        function $(id) {
+            return document.querySelector(id);
+        }
+        //var btn = document.querySelector('#load-more');
+        //var addInThis = document.querySelector('#addInThis');
 
         var pageIndex = 3;
         var isDataArrive = true;
 
-        btn.addEventListener('click', function(e){
+        $('#load-more').addEventListener('click', function(e){
             e.preventDefault();
 
             if(!isDataArrive){
@@ -91,7 +91,7 @@
                 node.innerText = news[i];
                 fragment.appendChild(node)
             }
-            addInThis.appendChild(fragment)
+            $('#addInThis').appendChild(fragment)
         }
 
         function ajax(options){
