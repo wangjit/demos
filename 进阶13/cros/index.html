@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CROS</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .change{
+            padding: 5px 10px;
+        }
+        li{
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <ul class="news">
+        <li>第11日前瞻：中国冲击4金 博尔特再战</li>
+        <li>男双力争会师决赛</li>
+        <li>女排将死磕巴西！</li>
+    </ul>
+    <button class="change">换一组</button>
+  </div>
+  <script>
+      function $(id) {
+          return document.querySelector(id);
+      }
+      $('.change').addEventListener('click',function () {
+          var xhr = new XMLHttpRequest();
+          xhr.open('get','http://localhost:8080/getNews',true);
+          xhr.send();
+          xhr.onreadystatechange = function () {
+              if(xhr.readyState === 4 && xhr.status === 200){
+                  appendHtml(JSON.parse(xhr.responseText))
+              }
+          };
+          window.xhr = xhr;
+      })
+      function appendHtml(news) {
+          var html = '';
+          for(var i = 0 ; i < news.length; i++){
+              html += '<li>' + news[i] + '</li>';
+          }
+          $('.news').innerHTML = html;
+      }
+  </script>
+</body>
+</html>
