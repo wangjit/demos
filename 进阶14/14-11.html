@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>左右切换tab</title>
+  <style>
+    *{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .tab-ct{
+      margin: 0 auto;
+      width: 602px;
+      border: 1px solid #ccc;
+    }
+    .tab-ct>.tabs>li{
+      width: 200px;
+      float: left;
+      cursor: pointer;
+      padding: 10px 10px;
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+    .tab-ct>.tabs>li:last-child{
+      border-right: none;
+    }
+    .tab-ct>.tabs>.active{
+      background: #eee;
+    }
+    .wrap{
+      position: relative;
+      width: 600px;
+      height: 300px;
+      overflow: hidden;
+    }
+    .wrap>.panels{
+      position: absolute;
+      width: 1800px;
+      display: flex;
+    }
+    .wrap>.panels>li{
+      width: 600px;
+      height: 300px;
+    }
+    .wrap>.panels>li:first-child{
+      background: yellow;
+    }
+    .wrap>.panels>li:nth-child(2){
+      background: red;
+    }
+    .wrap>.panels>li:nth-child(3){
+      background: pink;
+    }
+    .wrap>.panels>li.active{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-ct">
+    <ul class="tabs clearfix">
+      <li class="active">tab 1</li>
+      <li>tab 2</li>
+      <li>tab 3</li>
+    </ul>
+
+    <div class="wrap">
+      <ul class="panels clearfix">
+        <li class="active">content 1</li>
+        <li>content 2</li>
+        <li>content 3</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script>
+    $('.tab-ct .tabs li').on('click',function () {
+        var $this = $(this);
+        var ind = $this.index();
+        var liWidth = $('.tab-ct .wrap .panels li').width();
+        $this.addClass('active').siblings().removeClass('active');
+        $('.tab-ct .wrap .panels').animate({left: (-liWidth) * ind});
+    });
+  </script>
+</body>
+</html>
