@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>轮播渐变</title>
+  <style>
+    .carousel{
+      width: 320px;
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel ul,.carousel li{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .carousel .img-ct{
+      overflow: hidden;
+      position: absolute;
+    }
+    .carousel .img-ct>li{
+      float: left;
+    }
+    .carousel .img-ct img{
+      width: 320px;
+      height: 180px;
+    }
+    .carousel .arrow{
+      position: absolute;
+      top:50%;
+      margin-top: -15px;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      line-height: 30px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+    }
+    .carousel .arrow:hover{
+      opacity: 0.8;
+    }
+    .carousel .pre{
+      left: 10px;
+    }
+    .carousel .next{
+      right: 10px;
+    }
+    .carousel .bullet{
+      position: absolute;
+      z-index: 1;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0;
+    }
+    .carousel .bullet>li{
+      display: inline-block;
+      width: 30px;
+      height: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+    .carousel .bullet>li.active{
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+<div class="carousel">
+  <ul class="img-ct">
+    <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+    <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+  </ul>
+  <a href="#" class="pre arrow"><</a>
+  <a href="#" class="next arrow">></a>
+  <ul class="bullet">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    var $imgs = $('.carousel .img-ct >li');//
+    var $preBtn = $('.carousel .pre');//
+    var $nextBtn = $('.carousel .next');//
+    var $bullets = $('.bullet li');//
+    var $imgCt = $('.carousel .img-ct');
+
+    var pageIndex = 0;//记录当前页码
+    var isAnimate = false;//防止重复点击
+
+    var imgCount = $imgs.length;//
+    var imgWidth = $imgs.width();//
+    $imgCt.width(imgCount * imgWidth);
+
+    play();
+    $preBtn.click(function () {
+      playPre();
+    });
+    $nextBtn.click(function () {
+      playNext();
+    });
+
+    $bullets.click(function () {
+      var index = $(this).index();
+      pageIndex = index;
+      setBullet();
+      $imgs.fadeOut();
+      $imgs.eq(index).fadeIn();
+    });
+
+    function playNext() {
+      if(isAnimate){
+        return;
+      }
+      isAnimate = true;
+      $imgs.eq(pageIndex).fadeOut();
+      if(pageIndex === imgCount -1){
+        pageIndex = -1;
+      }
+      $imgs.eq(pageIndex + 1).fadeIn(function () {
+        isAnimate = false;
+      });
+      pageIndex++;
+      setBullet();
+    }
+    function playPre() {
+      if(isAnimate){
+        return;
+      }
+      isAnimate = true;
+      $imgs.eq(pageIndex).fadeOut();
+      if(pageIndex === 0){
+        pageIndex = imgCount;
+      }
+      $imgs.eq(pageIndex - 1).fadeIn(function () {
+        isAnimate = false;
+      });
+      pageIndex--;
+      setBullet();
+    }
+
+    function setBullet() {
+      $bullets.removeClass('active').eq(pageIndex).addClass('active');
+    }
+
+    function play() {
+      setInterval(function () {
+        playNext();
+      },3000)
+    }
+  </script>
+
+</div>
+</body>
+</html>
