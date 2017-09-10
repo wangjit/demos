@@ -145,6 +145,10 @@
         })
       }
       function playPre(len) {
+        if(isAnimate){
+          return;
+        }
+        isAnimate = true;
         $imgCt.animate({
           left: '+=' + len * imgWidth
         },function () {
@@ -156,6 +160,7 @@
             })
           }
           setBullet();
+          isAnimate = false;
         })
       }
 
