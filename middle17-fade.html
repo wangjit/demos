@@ -37,8 +37,8 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      border: 1px solid #fff;
       line-height: 30px;
+      background: #4E443C;
       color: #fff;
       text-align: center;
       text-decoration: none;
@@ -64,13 +64,13 @@
       display: inline-block;
       width: 30px;
       height: 5px;
-      border: 1px solid #ccc;
       border-radius: 4px;
+      background: #fff;
       margin: 0 3px;
       cursor: pointer;
     }
     .carousel .bullet>li.active{
-      background-color: #ccc;
+      background: #4E443C;
     }
   </style>
 </head>
@@ -129,11 +129,11 @@
         return;
       }
       isAnimate = true;
-      $imgs.eq(pageIndex).fadeOut();
+      $imgs.eq(pageIndex).fadeOut(500);
       if(pageIndex === imgCount -1){
         pageIndex = -1;
       }
-      $imgs.eq(pageIndex + 1).fadeIn(function () {
+      $imgs.eq(pageIndex + 1).fadeIn(500,function () {
         isAnimate = false;
       });
       pageIndex++;
@@ -144,11 +144,11 @@
         return;
       }
       isAnimate = true;
-      $imgs.eq(pageIndex).fadeOut();
+      $imgs.eq(pageIndex).fadeOut(500);
       if(pageIndex === 0){
         pageIndex = imgCount;
       }
-      $imgs.eq(pageIndex - 1).fadeIn(function () {
+      $imgs.eq(pageIndex - 1).fadeIn(500,function () {
         isAnimate = false;
       });
       pageIndex--;
