@@ -92,20 +92,20 @@
   </ul>
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    var $imgs = $('.carousel .img-ct >li');//
-    var $preBtn = $('.carousel .pre');//
-    var $nextBtn = $('.carousel .next');//
-    var $bullets = $('.bullet li');//
+    var $imgs = $('.carousel .img-ct >li');
+    var $preBtn = $('.carousel .pre');
+    var $nextBtn = $('.carousel .next');
+    var $bullets = $('.bullet li');
     var $imgCt = $('.carousel .img-ct');
 
     var pageIndex = 0;//记录当前页码
     var isAnimate = false;//防止重复点击
 
-    var imgCount = $imgs.length;//
-    var imgWidth = $imgs.width();//
+    var imgCount = $imgs.length;
+    var imgWidth = $imgs.width();
     $imgCt.width(imgCount * imgWidth);
 
-    play();
+    play();//自动轮播
     $preBtn.click(function () {
       playPre();
     });
@@ -115,6 +115,9 @@
 
     $bullets.click(function () {
       var index = $(this).index();
+      if(pageIndex === index){
+        return;
+      }
       pageIndex = index;
       setBullet();
       $imgs.fadeOut();
