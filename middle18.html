@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .content{
+      position: relative;
+    }
+    .item{
+      position: absolute;
+      width: 200px;
+      margin-right: 10px;
+      margin-top: 10px;
+      transition: all 1s;
+    }
+    .h1{
+      height: 200px;
+      background-color: #fed136;
+    }
+    .h2{
+      height: 300px;
+      background-color: #f44336;
+    }
+    .h3{
+      height: 400px;
+      background-color: #006ac1;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="item h1">1</div>
+    <div class="item h3">2</div>
+    <div class="item h2">3</div>
+    <div class="item h1">4</div>
+    <div class="item h1">5</div>
+    <div class="item h3">6</div>
+    <div class="item h2">7</div>
+    <div class="item h1">8</div>
+    <div class="item h3">9</div>
+    <div class="item h1">10</div>
+    <div class="item h2">11</div>
+    <div class="item h3">12</div>
+    <div class="item h2">13</div>
+    <div class="item h1">14</div>
+  </div>
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+//    waterfull();
+//
+//    $(window).resize(function () {
+//      waterfull();
+//    });
+
+
+
+    var waterFull = (function () {
+      function init() {
+        waterfull();
+        $(window).resize(function () {
+          waterfull();
+        })
+      }
+
+      function waterfull() {
+        var colLength = parseInt($('.content').width()/$('.item').width());
+        var itemArr = [];
+        for (var i = 0; i < colLength; i++){
+          itemArr[i] = 0;
+        }
+
+        $('.item').each(function () {
+          var minValue = Math.min.apply(null,itemArr);
+          var minIndex = itemArr.indexOf(minValue);
+
+          $(this).css({
+            top: itemArr[minIndex],
+            left: $(this).outerWidth(true) * minIndex
+          });
+
+          itemArr[minIndex] += $(this).outerHeight(true);
+        });
+      }
+      
+      return{
+        init: init
+      }
+    })();
+
+    waterFull.init();
+
+  </script>
+</body>
+</html>
