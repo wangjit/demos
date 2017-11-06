@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>轮播-面向对象封装</title>
+  <style>
+    .carousel {
+      width: 320px;
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel ul,
+    .carousel li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .carousel .img-ct {
+      overflow: hidden;
+      position: absolute;
+    }
+
+    .carousel .img-ct > li {
+      float: left;
+    }
+
+    .carousel .img-ct img {
+      width: 320px;
+      height: 180px;
+    }
+
+    .carousel .arrow {
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #4E443C;
+      line-height: 30px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .carousel .arrow:hover {
+      opacity: 0.8;
+    }
+
+    .carousel .pre {
+      left: 10px;
+    }
+
+    .carousel .next {
+      right: 10px;
+    }
+
+    .carousel .bullet {
+      position: absolute;
+      z-index: 1;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .carousel .bullet > li {
+      display: inline-block;
+      width: 30px;
+      height: 5px;
+      background: #fff;
+      border-radius: 4px;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+
+    .carousel .bullet > li.active {
+      background: #4E443C;
+    }
+  </style>
+</head>
+
+<body>
+<div class="carousel">
+  <ul class="img-ct">
+    <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+    <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+  </ul>
+  <a href="#" class="pre arrow">
+    <</a>
+  <a href="#" class="next arrow">></a>
+  <ul class="bullet">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    var $body = $('body');
+    var windowHeight = $(window).height();
+    $body.css({
+      "height": windowHeight,
+      "display": "flex",
+      "flex-direction": "row",
+      "justify-content": "center",
+      "align-items": "center"
+    });
+
+
+    var Carousel = (function () {
+      function _Carousel($ct) {
+        this.$ct = $ct;
+        this.init();
+        this.bind();
+      }
+
+      _Carousel.prototype.init = function () {
+        var $imgs = this.$imgs = this.$ct.find($('.carousel .img-ct >li'));
+        var $imgCt = this.$imgCt = this.$ct.find($('.carousel .img-ct'));
+        var $preBtn = this.$preBtn = this.$ct.find($('.carousel .pre'));
+        var $nextBtn = this.$nextBtn = this.$ct.find($('.carousel .next'));
+        var $bullets = this.$bullets = this.$ct.find($('.bullet li'));
+
+        this.pageIndex = 0;
+        this.isAnimate = false;
+
+        this.imgCount = $imgs.length;
+        this.imgWidth = $imgs.width();
+        $imgCt.append(this.$imgs.first().clone());
+        $imgCt.prepend(this.$imgs.last().clone());
+        $imgCt.width((this.imgCount + 2) * this.imgWidth);
+        $imgCt.css({
+          left: -this.imgWidth
+        });
+      };
+
+      _Carousel.prototype.bind = function () {
+        var that = this;
+        this.$preBtn.on('click', function (e) {
+          e.preventDefault();
+          that.playPre(1);
+        });
+        this.$nextBtn.on('click', function (e) {
+          e.preventDefault();
+          that.playNext(1);
+        });
+        this.$bullets.on('click', function () {
+          var index = $(this).index();
+          if (index > that.pageIndex) {
+            that.playNext(index - that.pageIndex);
+          } else if (index < that.pageIndex) {
+            that.playPre(that.pageIndex - index);
+          }
+        });
+      };
+      _Carousel.prototype.playNext = function (len) {
+        var that = this;
+        if (this.isAnimate) {
+          return;
+        }
+        this.isAnimate = true;
+        this.$imgCt.animate({
+          left: '-=' + len * this.imgWidth
+        }, function () {
+          that.pageIndex += len;
+          if (that.pageIndex === that.imgCount) {
+            that.pageIndex = 0;
+            that.$imgCt.css({
+              left: -that.imgWidth
+            })
+          }
+          that.setBullet();
+          that.isAnimate = false;
+        })
+      };
+      _Carousel.prototype.playPre = function (len) {
+        var that = this;
+        if (this.isAnimate) {
+          return;
+        }
+        this.isAnimate = true;
+        this.$imgCt.animate({
+          left: '+=' + len * this.imgWidth
+        }, function () {
+          that.pageIndex -= len;
+          if (that.pageIndex < 0) {
+            that.pageIndex = that.imgCount - 1;
+            that.$imgCt.css({
+              left: -that.imgCount * that.imgWidth
+            })
+          }
+          that.setBullet();
+          that.isAnimate = false;
+        })
+      };
+
+      _Carousel.prototype.setBullet = function () {
+        this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active');
+      };
+      return {
+        init: function ($ct) {
+          $ct.each(function (index, node) {
+            new _Carousel($(node))
+          })
+        }
+      }
+    })();
+    Carousel.init($('.carousel'));
+  </script>
+
+</div>
+<div class="carousel">
+  <ul class="img-ct">
+    <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+    <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+    <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+    <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+  </ul>
+  <a href="#" class="pre arrow">
+    <</a>
+  <a href="#" class="next arrow">></a>
+  <ul class="bullet">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var $body = $('body');
+  var windowHeight = $(window).height();
+  $body.css({
+    "height": windowHeight,
+    "display": "flex",
+    "flex-direction": "column",
+    "justify-content": "space-around",
+    "align-items": "center"
+  });
+
+
+  var Carousel = (function () {
+    function _Carousel($ct) {
+      this.$ct = $ct;
+      this.init();
+      this.bind();
+    }
+
+    _Carousel.prototype.init = function () {
+      var $imgs = this.$imgs = this.$ct.find($('.carousel .img-ct >li'));
+      var $imgCt = this.$imgCt = this.$ct.find($('.carousel .img-ct'));
+      var $preBtn = this.$preBtn = this.$ct.find($('.carousel .pre'));
+      var $nextBtn = this.$nextBtn = this.$ct.find($('.carousel .next'));
+      var $bullets = this.$bullets = this.$ct.find($('.bullet li'));
+
+      this.pageIndex = 0;
+      this.isAnimate = false;
+
+      this.imgCount = $imgs.length;
+      this.imgWidth = $imgs.width();
+      $imgCt.append(this.$imgs.first().clone());
+      $imgCt.prepend(this.$imgs.last().clone());
+      $imgCt.width((this.imgCount + 2) * this.imgWidth);
+      $imgCt.css({
+        left: -this.imgWidth
+      });
+    };
+
+    _Carousel.prototype.bind = function () {
+      var that = this;
+      this.$preBtn.on('click', function (e) {
+        e.preventDefault();
+        that.playPre(1);
+      });
+      this.$nextBtn.on('click', function (e) {
+        e.preventDefault();
+        that.playNext(1);
+      });
+      this.$bullets.on('click', function () {
+        var index = $(this).index();
+        if (index > that.pageIndex) {
+          that.playNext(index - that.pageIndex);
+        } else if (index < that.pageIndex) {
+          that.playPre(that.pageIndex - index);
+        }
+      });
+    };
+    _Carousel.prototype.playNext = function (len) {
+      var that = this;
+      if (this.isAnimate) {
+        return;
+      }
+      this.isAnimate = true;
+      this.$imgCt.animate({
+        left: '-=' + len * this.imgWidth
+      }, function () {
+        that.pageIndex += len;
+        if (that.pageIndex === that.imgCount) {
+          that.pageIndex = 0;
+          that.$imgCt.css({
+            left: -that.imgWidth
+          })
+        }
+        that.setBullet();
+        that.isAnimate = false;
+      })
+    };
+    _Carousel.prototype.playPre = function (len) {
+      var that = this;
+      if (this.isAnimate) {
+        return;
+      }
+      this.isAnimate = true;
+      this.$imgCt.animate({
+        left: '+=' + len * this.imgWidth
+      }, function () {
+        that.pageIndex -= len;
+        if (that.pageIndex < 0) {
+          that.pageIndex = that.imgCount - 1;
+          that.$imgCt.css({
+            left: -that.imgCount * that.imgWidth
+          })
+        }
+        that.setBullet();
+        that.isAnimate = false;
+      })
+    };
+
+    _Carousel.prototype.setBullet = function () {
+      this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active');
+    };
+    return {
+      init: function ($ct) {
+        $ct.each(function (index, node) {
+          new _Carousel($(node))
+        })
+      }
+    }
+  })();
+  Carousel.init($('.carousel'));
+</script>
+
+
+</body>
+
+</html>
