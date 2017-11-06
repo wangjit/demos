@@ -80,7 +80,7 @@
 </ul>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-  var lazy = (function () {
+  var lazyRender = (function () {
     function Exposure($target, callback) {
       this.$target = $target;
       this.callback = callback;
@@ -125,7 +125,7 @@
       }
     }
   })();
-  lazy.init($('.container img'),function ($node) {
+  lazyRender.init($('.container img'),function ($node) {
     loadImg($node);
   });
   function loadImg($img) {
