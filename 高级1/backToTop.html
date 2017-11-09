@@ -18,17 +18,16 @@
       text-align: center;
       text-decoration: none;
       width: 59px;
-      height: 22px;
       color:rgb(255, 255, 255);
       font-size:13px;
       padding: 10px 0;
-      box-shadow:rgb(197, 229, 145) 0px 0px 5px 0px;
+      box-shadow:#bfbfbf 0px 0px 5px 0px;
       border-width:2px;
-      border-color:rgb(197, 229, 145);
+      border-color:#bfbfbf;
       border-style:solid;
       border-radius:13px;
       background-color:rgba(0, 0, 0, 0);
-      background:-webkit-gradient(linear,0% 0%,0% 100%,from(#dbe6c8),to(#78c300));
+      background:-webkit-gradient(linear,0% 0%,0% 100%,from(#eef0ea),to(#bfbfbf));
       opacity: 0.8;
     }
     .btt:hover{
@@ -42,18 +41,21 @@
   </div>
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    var ct = new GoTop($('.ct'));
-    function GoTop(ct) {
-      this.ct = ct;
+    //var ct = new GoTop($('.ct'));
+    var backToTop = (function (){
+      function GoTop($ct) {
+      this.$ct = $ct;
       this.target = $('<a href = "#" class = "btt">Top</a>');
       this.target.css({
         position: 'fixed',
         right: '100px',
         bottom: '150px'
-      })
+      });
+      this.creatNode();
+      this.bindEvent();
     }
     GoTop.prototype.creatNode = function () {
-      this.target.appendTo(this.ct);
+      this.target.appendTo(this.$ct);
       this.target.hide();
     };
     GoTop.prototype.bindEvent = function () {
@@ -67,8 +69,15 @@
       });
 
     };
-    ct.creatNode();
-    ct.bindEvent();
+      return {
+        init: function ($ct) {
+          new GoTop($ct)
+        }
+      }
+    })()
+    
+
+    backToTop.init($('.ct'));
   </script>
 </body>
 </html>

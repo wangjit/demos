@@ -16,8 +16,31 @@
       margin: 0;
       padding: 0;
       text-decoration: none;
-      
     }
+
+
+    .btt{
+      text-align: center;
+      text-decoration: none;
+      width: 59px;
+      color:rgb(255, 255, 255);
+      font-size:13px;
+      padding: 10px 0;
+      box-shadow:#bfbfbf 0px 0px 5px 0px;
+      border-width:2px;
+      border-color:#bfbfbf;
+      border-style:solid;
+      border-radius:13px;
+      background-color:rgba(0, 0, 0, 0);
+      background:-webkit-gradient(linear,0% 0%,0% 100%,from(#eef0ea),to(#bfbfbf));
+      opacity: 0.8;
+    }
+    .btt:hover{
+      opacity: 1;
+    }
+
+
+
     .homepage>.intro-text>a:hover,#CONTACT a:hover{
       background-color: #fec503;
     }
@@ -25,12 +48,15 @@
       font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
       color: #333;
     }
-    .wrapper {
+    /* .wrapper {
+      position: absolute;
       display: flex;
       flex-direction: column;
       height: 100vh;
-    }
+    } */
     header {
+      position: fixed;
+      z-index: 999;
       width: 100%;
       background-color: #222222;
       padding-top: 20px;
@@ -78,9 +104,77 @@
     }
     
 
-    main {
-      overflow: auto;
+    .carousel {
+    	height: 100vh;
+    	position: relative;
+    	overflow: hidden;
     }
+    .carousel ul,
+    .carousel li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .carousel .img-ct {
+      position: absolute;
+    }
+
+    .carousel .img-ct > li {
+      float: left;
+    }
+
+    .carousel .arrow {
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #4E443C;
+      line-height: 50px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .carousel .arrow:hover {
+      opacity: 0.8;
+    }
+
+    .carousel .pre {
+      left: 10px;
+    }
+
+    .carousel .next {
+      right: 10px;
+    }
+
+    .carousel .bullet {
+      position: absolute;
+      z-index: 1;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0;
+    }
+
+    .carousel .bullet > li {
+      display: inline-block;
+      width: 50px;
+      height: 10px;
+      background: #bfbfbf;
+      border-radius: 4px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .carousel .bullet > li.active {
+      background: #4E443C;
+    }
+
+
     .homepage {
       
       background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/header-bg.jpg);
@@ -363,9 +457,6 @@
       background-position: center center;
       background-size: cover;
     }
-    #CONTACT > .contact-ct > .contact-form > form > input{
-      
-    }
     
     .contact-form {
       display: inline-block;
@@ -424,11 +515,14 @@
   </style>
 </head>
 <body>
-  <div class="wrapper">
+
+
+
+
     <header>
       <div class="nav">
         <div class="nav-a">
-          <a href="#nav" class = "nav-as">Start Bootstrap</a>
+          <a href="#HOMEPAGE" class = "nav-as">Start Bootstrap</a>
         </div>
         <div class="nav-b">
           <a href="#CONTACT" class = "nav-bs">CONTACT</a>
@@ -439,8 +533,31 @@
         </div>
       </div>
     </header>
+
+
     <main>
-      <div class="homepage">
+
+        <div class="wrapper">
+            <div class="carousel">
+                <ul class="img-ct">
+                  <li data-id=0><a href="#"><img src="下载.jpeg"></a></li>
+                  <li data-id=1><a href="#"><img src="下载 (1).jpeg"></a></li>
+                  <li data-id=2><a href="#"><img src="下载 (3).jpeg"></a></li>
+                  <li data-id=3><a href="#"><img src="下载 (4).jpeg"></a></li>
+                </ul>
+                <a href="#" class="pre arrow">
+                  <</a>
+                <a href="#" class="next arrow">></a>
+                <ul class="bullet">
+                  <li class="active"></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+
+
+      <div id = "HOMEPAGE" class="homepage">
         <div class = "intro-text">
           <div class="intro-lead-in">Welcome To Our Studio!</div>
           <div class="intro-heading">IT'S NICE TO MEET YOU</div>
@@ -675,5 +792,150 @@
       </footer>
     </main>
   </div>
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+
+
+      var Carousel = (function () {
+        function _Carousel($ct) {
+          this.$ct = $ct;
+          this.init();
+          this.bind();
+        }
+    
+        _Carousel.prototype.init = function () {
+          var $imgs = this.$imgs = this.$ct.find($('.carousel .img-ct >li'));
+          var $imgCt = this.$imgCt = this.$ct.find($('.carousel .img-ct'));
+          var $preBtn = this.$preBtn = this.$ct.find($('.carousel .pre'));
+          var $nextBtn = this.$nextBtn = this.$ct.find($('.carousel .next'));
+          var $bullets = this.$bullets = this.$ct.find($('.bullet li'));
+    
+          this.pageIndex = 0;
+          this.isAnimate = false;
+    
+          this.imgCount = $imgs.length;
+          this.imgWidth = $imgs.width();
+          $imgCt.append(this.$imgs.first().clone());
+          $imgCt.prepend(this.$imgs.last().clone());
+          $imgCt.width((this.imgCount + 2) * this.imgWidth);
+          $imgCt.css({
+            left: -this.imgWidth
+          });
+        };
+    
+        _Carousel.prototype.bind = function () {
+          var that = this;
+          this.$preBtn.on('click', function (e) {
+            e.preventDefault();
+            that.playPre(1);
+          });
+          this.$nextBtn.on('click', function (e) {
+            e.preventDefault();
+            that.playNext(1);
+          });
+          this.$bullets.on('click', function () {
+            var index = $(this).index();
+            if (index > that.pageIndex) {
+              that.playNext(index - that.pageIndex);
+            } else if (index < that.pageIndex) {
+              that.playPre(that.pageIndex - index);
+            }
+          });
+        };
+        _Carousel.prototype.playNext = function (len) {
+          var that = this;
+          if (this.isAnimate) {
+            return;
+          }
+          this.isAnimate = true;
+          this.$imgCt.animate({
+            left: '-=' + len * this.imgWidth
+          }, function () {
+            that.pageIndex += len;
+            if (that.pageIndex === that.imgCount) {
+              that.pageIndex = 0;
+              that.$imgCt.css({
+                left: -that.imgWidth
+              })
+            }
+            that.setBullet();
+            that.isAnimate = false;
+          })
+        };
+        _Carousel.prototype.playPre = function (len) {
+          var that = this;
+          if (this.isAnimate) {
+            return;
+          }
+          this.isAnimate = true;
+          this.$imgCt.animate({
+            left: '+=' + len * this.imgWidth
+          }, function () {
+            that.pageIndex -= len;
+            if (that.pageIndex < 0) {
+              that.pageIndex = that.imgCount - 1;
+              that.$imgCt.css({
+                left: -that.imgCount * that.imgWidth
+              })
+            }
+            that.setBullet();
+            that.isAnimate = false;
+          })
+        };
+    
+        _Carousel.prototype.setBullet = function () {
+          this.$bullets.removeClass('active').eq(this.pageIndex).addClass('active');
+        };
+        return {
+          init: function ($ct) {
+            $ct.each(function (index, node) {
+              new _Carousel($(node))
+            })
+          }
+        }
+      })();
+      Carousel.init($('.carousel'));
+
+
+      var backToTop = (function (){
+      function GoTop($ct) {
+      this.$ct = $ct;
+      this.target = $('<a href = "#" class = "btt">Top</a>');
+      this.target.css({
+        position: 'fixed',
+        right: '100px',
+        bottom: '150px'
+      });
+      this.creatNode();
+      this.bindEvent();
+    }
+    GoTop.prototype.creatNode = function () {
+      this.target.appendTo(this.$ct);
+      this.target.hide();
+    };
+    GoTop.prototype.bindEvent = function () {
+      var that = this;
+      $(window).on('scroll',function () {
+        if($(window).scrollTop() < 100) {
+          that.target.hide();
+        }else {
+          that.target.show();
+        }
+      });
+
+    };
+      return {
+        init: function ($ct) {
+          new GoTop($ct)
+        }
+      }
+    })()
+    
+
+    backToTop.init($('body'));
+    </script>
 </body>
 </html>
