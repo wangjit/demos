@@ -103,7 +103,7 @@
     Tab.prototype.init = function(){
       this.tabLis = this.ct.querySelectorAll('.tab-header>li');
       this.tabPanels = this.ct.querySelectorAll('.tab-content>li');
-    }
+    };
     Tab.prototype.bind = function(){
       var that = this;
       this.tabLis.forEach(function(tabli) {
@@ -120,7 +120,7 @@
           that.tabPanels[index].classList.add('active');
         }
       });
-    }
+    };
     var tab1 = new Tab(document.querySelectorAll('.tab')[0]);
     var tab2 = new Tab(document.querySelectorAll('.tab')[1]);
   </script>

@@ -45,6 +45,7 @@
     var backToTop = (function (){
       function GoTop($ct) {
       this.$ct = $ct;
+
       this.target = $('<a href = "#" class = "btt">Top</a>');
       this.target.css({
         position: 'fixed',
@@ -74,7 +75,7 @@
           new GoTop($ct)
         }
       }
-    })()
+    })();
     
 
     backToTop.init($('.ct'));

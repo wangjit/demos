@@ -11,7 +11,7 @@
     }
 
     .img-preview {
-      width:1100px;
+      width: 1100px;
       margin: 0 auto;
     }
 
@@ -29,9 +29,11 @@
       float: left;
 
     }
+
     .img-line .img-box:first-child {
       padding-left: 0;
     }
+
     .bottom-block {
       height: 50px;
       visibility: hidden;
@@ -40,108 +42,109 @@
   </style>
 </head>
 <body>
-  <div class="img-preview"></div>
-  <div class="bottom-block"></div>
+<div class="img-preview"></div>
+<div class="bottom-block"></div>
 
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    var $bottom_block = $('.bottom-block');
-    var timmer = null;
-    var ct = $('.img-preview');
-    function Barrels($ct,baseHeight) {
-      this.$ct = $ct;
-      this.baseHeight = baseHeight;
-      this.rowList = [];
-      this.loadImg();
-    }
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var $bottom_block = $('.bottom-block');
+  var timmer = null;
+  var ct = $('.img-preview');
 
-    Barrels.prototype = {
-      getImageUrls: function (num) {
-        var height, width, urls = [];
-        for (var i = 0; i < num; i++) {
-          height = Math.floor(Math.random() * 100 + 400);
-          width = Math.floor(Math.random() * 300 + 400);
-          urls.push('https://unsplash.it/' + width + '/' + height + '/?random/');
-        }
-        return urls;
-      },
+  function Barrels($ct, baseHeight) {
+    this.$ct = $ct;
+    this.baseHeight = baseHeight;
+    this.rowList = [];
+    this.loadImg();
+  }
 
-      loadImg: function () {
-        var _this = this;
-        var imgUrls = this.getImageUrls(10);          //获取100张图片地址
-        $.each(imgUrls, function (idx, url) {           //遍历每一张图片地址
-          var img = new Image();                            //创建image
-          img.src = url;
-          img.onload = function () {                        //每次加载时，就执行render
-            var imgInfo = {
-              target: $(this),
-              width: _this.baseHeight * (img.width/img.height),
-              height: _this.baseHeight
-            };
-            _this.render(imgInfo);
+  Barrels.prototype = {
+    getImageUrls: function (num) {
+      var height, width, urls = [];
+      for (var i = 0; i < num; i++) {
+        height = Math.floor(Math.random() * 100 + 400);
+        width = Math.floor(Math.random() * 300 + 400);
+        urls.push('https://unsplash.it/' + width + '/' + height + '/?random/');
+      }
+      return urls;
+    },
+
+    loadImg: function () {
+      var _this = this;
+      var imgUrls = this.getImageUrls(10);          //获取100张图片地址
+      $.each(imgUrls, function (idx, url) {           //遍历每一张图片地址
+        var img = new Image();                            //创建image
+        img.src = url;
+        img.onload = function () {                        //每次加载时，就执行render
+          var imgInfo = {
+            target: $(this),
+            width: _this.baseHeight * (img.width / img.height),
+            height: _this.baseHeight
           };
-        });
-      },
+          _this.render(imgInfo);
+        };
+      });
+    },
 
-      render: function (imgInfo) {                 //有了加载后的图片对象。就可以在页面进行摆放
-        var _this = this;
-        var rowList = this.rowList,
-          rowWidth = 0,
-          rowHeight = 0,
-          clientWidth = this.$ct.width(),
-          lastImgInfo = imgInfo;
+    render: function (imgInfo) {                 //有了加载后的图片对象。就可以在页面进行摆放
+      var _this = this;
+      var rowList = this.rowList,
+        rowWidth = 0,
+        rowHeight = 0,
+        clientWidth = this.$ct.width(),
+        lastImgInfo = imgInfo;
 
-        this.rowList.push(imgInfo);
+      this.rowList.push(imgInfo);
 
-        $.each(rowList, function (idx, imgInfo) {
-          rowWidth += imgInfo.width;
-          if (rowWidth > clientWidth) {                    //如果添加到某一张图片后，总宽度大于容器宽度，就把最后那一个去除。
-            // console.log(imgInfo.target)
-            rowList.pop();
-            rowWidth = rowWidth - lastImgInfo.width;
-            rowHeight = clientWidth * _this.baseHeight / rowWidth;
+      $.each(rowList, function (idx, imgInfo) {
+        rowWidth += imgInfo.width;
+        if (rowWidth > clientWidth) {                    //如果添加到某一张图片后，总宽度大于容器宽度，就把最后那一个去除。
+          // console.log(imgInfo.target)
+          rowList.pop();
+          rowWidth = rowWidth - lastImgInfo.width;
+          rowHeight = clientWidth * _this.baseHeight / rowWidth;
 
-            _this.layout(rowHeight);           //取出后执行layout函数
-            _this.rowList = [];                //然后清空数组
-            _this.rowList.push(lastImgInfo);   //再把之前去除的哪一张图片，添加到清空后的数组。
-          }
-        });
-      },
+          _this.layout(rowHeight);           //取出后执行layout函数
+          _this.rowList = [];                //然后清空数组
+          _this.rowList.push(lastImgInfo);   //再把之前去除的哪一张图片，添加到清空后的数组。
+        }
+      });
+    },
 
-      layout: function (rowHeight) {
-        var $rowCt = $('<div class="img-row"></div>');
-        $.each(this.rowList, function (idx, imgInfo) {
-          var $imgCt = $('<div class="img-box"></div>'),
-            $img = imgInfo.target;
+    layout: function (rowHeight) {
+      var $rowCt = $('<div class="img-row"></div>');
+      $.each(this.rowList, function (idx, imgInfo) {
+        var $imgCt = $('<div class="img-box"></div>'),
+          $img = imgInfo.target;
 
-          $img.height(rowHeight);
-          $imgCt.append($img);
-          $rowCt.append($imgCt);
-        });
-        this.$ct.append($rowCt);
-      }
-    };
-    // 判断网页是否滚动到底部
-    function isBottom($bottomBlock) {
-      var windowHeight = $(window).height();
-      var scrollTop = $(window).scrollTop();
-      var offsetTop = $bottomBlock.offset().top;
-      return offsetTop < windowHeight + scrollTop ;
+        $img.height(rowHeight);
+        $imgCt.append($img);
+        $rowCt.append($imgCt);
+      });
+      this.$ct.append($rowCt);
     }
+  };
 
-    // 如果网页滚动到底部，则加载新的图片
-    $(window).on('scroll', function () {
-      window.clearTimeout(timmer);
+  // 判断网页是否滚动到底部
+  function isBottom($bottomBlock) {
+    var windowHeight = $(window).height();
+    var scrollTop = $(window).scrollTop();
+    var offsetTop = $bottomBlock.offset().top;
+    return offsetTop < windowHeight + scrollTop;
+  }
 
-      if (isBottom($bottom_block)) {
-        timmer = window.setTimeout(function () {
-          new Barrels(ct,250);
-        }, 500);
-      }
-    }).trigger('scroll');
+  // 如果网页滚动到底部，则加载新的图片
+  $(window).on('scroll', function () {
+    window.clearTimeout(timmer);
+
+    if (isBottom($bottom_block)) {
+      timmer = window.setTimeout(function () {
+        new Barrels(ct, 250);
+      }, 500);
+    }
+  }).trigger('scroll');
 
 
-
-  </script>
+</script>
 </body>
 </html>
