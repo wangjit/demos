@@ -1,0 +1,623 @@
+
+/* 初始化 */
+* {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.homepage > .intro-text > a:hover, #CONTACT a:hover {
+  background-color: #fec503;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+#SERVICES, #PORTFOLIO, #ABOUT, #TEAM, #CONTACT, aside, footer {
+  text-align: center;
+}
+
+/* GoTop按钮*/
+.btt {
+  text-align: center;
+  text-decoration: none;
+  width: 59px;
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  padding: 10px 0;
+  box-shadow: #bfbfbf 0 0 5px 0;
+  border: 2px solid #bfbfbf;
+  border-radius: 13px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eef0ea), to(#bfbfbf));
+  opacity: 0.8;
+}
+
+.btt:hover {
+  opacity: 1;
+}
+
+/* 导航 */
+header {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  background-color: #222222;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.nav {
+  display: inline-block;
+  max-width: 1140px;
+}
+
+.nav-a, .nav-b {
+  display: inline-block;
+}
+
+.nav-a {
+  width: 300px;
+  float: left;
+}
+
+.nav-b {
+  width: 780px;
+  margin-top: 14px;
+  position: relative;
+  right: 50px;
+}
+
+.nav-bs {
+  float: right;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.nav-b a:not(.first-b) {
+  margin-left: 30px;
+}
+
+.nav a:hover {
+  color: #fed136;
+}
+
+.nav-b a:active {
+  color: #fff;
+  background-color: #fed136;
+  border-radius: 4px;
+}
+
+.nav-as {
+  color: #fed136;
+  font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+  font-size: 2em;
+}
+
+/* 轮播 */
+.carousel {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel ul,
+.carousel li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel .img-ct {
+  position: absolute;
+}
+
+.carousel .img-ct > li {
+  float: left;
+}
+
+.carousel .arrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #4E443C;
+  line-height: 50px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.carousel .arrow:hover {
+  opacity: 0.8;
+}
+
+.carousel .pre {
+  left: 10px;
+}
+
+.carousel .next {
+  right: 10px;
+}
+
+.carousel .bullet {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 0;
+}
+
+.carousel .bullet > li {
+  display: inline-block;
+  width: 50px;
+  height: 10px;
+  background: #bfbfbf;
+  border-radius: 4px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.carousel .bullet > li.active {
+  background: #4E443C;
+}
+
+/* waterfull */
+.waterFullCt {
+  height: 930px;
+  position: relative;
+}
+
+.waterFullCt .item {
+  position: absolute;
+  width: 200px;
+  margin-right: 10px;
+  margin-top: 10px;
+  transition: all 1s;
+}
+
+.waterFullCt .h1 {
+  height: 200px;
+  background-color: #fed136;
+}
+
+.waterFullCt .h2 {
+  height: 300px;
+  background-color: #f44336;
+}
+
+.waterFullCt .h3 {
+  height: 400px;
+  background-color: #006ac1;
+}
+
+.waterFull .loadMore {
+  text-align: center;
+  height: 100px;
+  margin-top: 40px;
+}
+
+.waterFull .loadMore a {
+  border: 2px solid #bfbfbf;
+  text-decoration: none;
+  text-align: center;
+  width: 59px;
+  color: #000000;
+  font-size: 13px;
+  padding: 10px 0;
+  box-shadow: rgb(191, 191, 191) 0 0 5px 0;
+  border-radius: 13px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eef0ea), to(#bfbfbf));
+  opacity: 0.5;
+}
+
+.waterFull .loadMore a:hover {
+  opacity: 1;
+}
+
+/* homepage */
+.homepage {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/header-bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  color: #fff;
+}
+
+.intro-text {
+  text-align: center;
+  padding: 300px 0;
+}
+
+.homepage > .intro-text > .intro-lead-in {
+  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 25px;
+}
+
+.homepage > .intro-text > .intro-heading {
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 75px;
+  margin-bottom: 50px;
+}
+
+.homepage > .intro-text > a, #CONTACT a {
+  color: #fff;
+  background-color: #fed136;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 22px 40px;
+}
+
+/* services */
+.service-heading {
+  margin: 15px 0;
+  text-transform: none;
+}
+
+.iconfont {
+  margin: 0 auto;
+  font-family: "iconfont" !important;
+  font-size: 50px;
+  color: #fff;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: #fed136;
+  padding: 25px 25px;
+}
+
+.module {
+  margin: 40px auto;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 349938 */
+  src: url('//at.alicdn.com/t/font_22o6hq05w0lwstt9.eot');
+  src: url('//at.alicdn.com/t/font_22o6hq05w0lwstt9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_22o6hq05w0lwstt9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_22o6hq05w0lwstt9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_22o6hq05w0lwstt9.svg#iconfont') format('svg');
+}
+
+.section-heading {
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  margin-top: 147px;
+  margin-bottom: 15px;
+}
+
+.section-subheading {
+  font-size: 16px;
+  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  margin: 3px 0 25px 0;
+  color: #777;
+}
+
+#SERVICES .module {
+  display: inline-block;
+  width: 380px;
+}
+
+.module {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.text-muted {
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* portfolio */
+#PORTFOLIO {
+  background-color: #f7f7f7;
+}
+
+.card1 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/roundicons.png);
+}
+
+.card2 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/startup-framework.png);
+}
+
+.card3 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/treehouse.png);
+}
+
+.card4 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/golden.png);
+}
+
+.card5 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/escape.png);
+}
+
+.card6 {
+  background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/portfolio/dreams.png);
+}
+
+#PORTFOLIO .portfolio-card {
+  display: inline-block;
+}
+
+.card-hover:hover {
+  opacity: 0.9;
+  transition: all ease .5s;
+}
+
+.card-hover {
+  font-family: 'iconfont';
+  line-height: 260px;
+  font-size: 70px;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #f9d146;
+  transition: all ease .5s;
+}
+
+.portfolio-card div:hover .card-hover {
+  display: block;
+  cursor: pointer;
+}
+
+.portfolio-card {
+  background-color: #fff;
+  margin: 0 15px 30px 15px;
+}
+
+.portfolio-card > div {
+  width: 359px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#PORTFOLIO h4 {
+  font-size: 18px;
+  margin-top: 27px;
+}
+
+#PORTFOLIO .portfolio-card:nth-child(7) {
+  margin-bottom: 180px;
+}
+
+#PORTFOLIO h2 {
+  padding-top: 145px;
+}
+
+/* timeline */
+.timeline {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+.timeline img {
+  width: 156px;
+  border: 7px solid #f1f1f1;
+  border-radius: 50%;
+}
+
+.timeline > li {
+  text-align: center;
+  position: relative;
+  padding: 0 0 125px 0;
+}
+
+.timeline > li > .summary {
+  position: absolute;
+  right: 50%;
+  margin-right: 90px;
+  text-align: right;
+  top: 0;
+  width: 22em;
+
+}
+
+.timeline > li:nth-child(even) > .summary {
+  left: 50%;
+  margin-left: 90px;
+  text-align: left;
+}
+
+.timeline > li:nth-child(5) {
+  padding-bottom: 0;
+}
+
+.timeline > li::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -1px;
+  border-left: 2px solid #f1f1f1;
+  height: 100%;
+  z-index: -1;
+}
+
+.timeline h4 {
+  margin: 5px 0;
+}
+
+.timeline .last-img {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 160px;
+  width: 156px;
+  height: 156px;
+  padding-top: 37px;
+  border: 7px solid #f1f1f1;
+  background-color: #fed136;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.timeline .last-img > h4 {
+  color: #fff;
+}
+
+/* team */
+#TEAM {
+  background-color: #f7f7f7;
+  border: 1px solid #f7f7f7;
+  padding-bottom: 45px;
+}
+
+.member-ct {
+  margin: 40px 0 80px 0;
+}
+
+.member {
+  display: inline-block;
+  width: 380px;
+  margin: 30px 0;
+}
+
+.team-iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  color: #fff;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 50%;
+  background-color: black;
+  padding: 10px 10px;
+  cursor: pointer;
+  transition: all ease .5s;
+}
+
+.team-iconfont:hover {
+  background-color: #fed136;
+}
+
+.team-icon-ct {
+  padding: 20px 0;
+}
+
+.member img {
+  width: 232px;
+  border: 7px solid #fff;
+  border-radius: 50%;
+}
+
+.team-last-p {
+  font-size: 16px;
+  display: inline-block;
+  max-width: 800px;
+  padding: 10px 0 10px 0;
+}
+
+/* aside */
+aside > .aside-img {
+  display: inline-block;
+  width: 285px;
+  cursor: pointer;
+}
+
+aside {
+  padding: 30px 0;
+}
+
+/* contact */
+#CONTACT {
+  background-image: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/map-image.png);
+  background-color: #222222;
+  background-position: center center;
+  background-size: cover;
+}
+
+.contact-form {
+  display: inline-block;
+  width: 570px;
+  margin: 10px 20px;
+}
+
+.form-control {
+  display: block;
+  margin-bottom: 25px;
+  padding: 20px;
+  min-width: 550px;
+  font-size: 14px;
+  font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #555;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: 0;
+}
+
+textarea {
+  height: 238px;
+  position: relative;
+  bottom: 4px;
+}
+
+#CONTACT {
+  padding: 1px 0;
+}
+
+#CONTACT h2 {
+  color: #fff;
+  padding: 20px auto;
+}
+
+.contact-btn {
+  padding: 0 0 100px 0;
+}
+
+#CONTACT .contact-ct {
+  margin: 150px auto;
+}
+
+.form1 {
+  position: relative;
+  bottom: 66px;
+}
+
+/* footer */
+footer div {
+  display: inline-block;
+  width: 380px;
+  margin: 10px 0;
+}
+
+footer {
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+footer a {
+  color: #fed136;
+  margin-left: 10px;
+}
+
+footer a:hover {
+  color: black;
+}

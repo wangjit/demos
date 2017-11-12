@@ -42,7 +42,7 @@
       font-size: 13px;
       padding: 10px 0;
       box-shadow: #bfbfbf 0 0 5px 0;
-      border:2px solid #bfbfbf;
+      border: 2px solid #bfbfbf;
       border-radius: 13px;
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eef0ea), to(#bfbfbf));
       opacity: 0.8;
@@ -181,6 +181,59 @@
 
     .carousel .bullet > li.active {
       background: #4E443C;
+    }
+
+    /* waterfull */
+    .waterFullCt {
+      height: 930px;
+      position: relative;
+    }
+
+    .waterFullCt .item {
+      position: absolute;
+      width: 200px;
+      margin-right: 10px;
+      margin-top: 10px;
+      transition: all 1s;
+    }
+
+    .waterFullCt .h1 {
+      height: 200px;
+      background-color: #fed136;
+    }
+
+    .waterFullCt .h2 {
+      height: 300px;
+      background-color: #f44336;
+    }
+
+    .waterFullCt .h3 {
+      height: 400px;
+      background-color: #006ac1;
+    }
+
+    .waterFull .loadMore {
+      text-align: center;
+      height: 100px;
+      margin-top: 40px;
+    }
+
+    .waterFull .loadMore a {
+      border: 2px solid #bfbfbf;
+      text-decoration: none;
+      text-align: center;
+      width: 59px;
+      color: #000000;
+      font-size: 13px;
+      padding: 10px 0;
+      box-shadow: rgb(191, 191, 191) 0 0 5px 0;
+      border-radius: 13px;
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eef0ea), to(#bfbfbf));
+      opacity: 0.5;
+    }
+
+    .waterFull .loadMore a:hover {
+      opacity: 1;
     }
 
     /* homepage */
@@ -627,6 +680,28 @@
       </div>
     </div>
 
+    <div class="waterFull">
+      <div class="waterFullCt">
+        <div class="item h1">1</div>
+        <div class="item h3">2</div>
+        <div class="item h2">3</div>
+        <div class="item h1">4</div>
+        <div class="item h1">5</div>
+        <div class="item h3">6</div>
+        <div class="item h2">7</div>
+        <div class="item h1">8</div>
+        <div class="item h3">9</div>
+        <div class="item h1">10</div>
+        <div class="item h2">11</div>
+        <div class="item h3">12</div>
+        <div class="item h2">13</div>
+        <div class="item h1">14</div>
+      </div>
+      <div class="loadMore">
+        <a href="#" class="lm">加载更多</a>
+      </div>
+    </div>
+
     <div id="SERVICES">
       <div class="services-text">
         <h2 class="section-heading">SERVICES</h2>
@@ -875,7 +950,6 @@
       </div>
     </footer>
 </main>
-</div>
 
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -1016,10 +1090,110 @@
         new GoTop($ct)
       }
     }
-  })()
-
-
+  })();
   backToTop.init($('body'));
+
+  var WaterFull = (function () {
+    function waterFull($ct) {
+      this.$ct = $ct;
+      this.init();
+      let that = this;
+      $(window).resize(function () {
+        that.init();
+      })
+    }
+
+    waterFull.prototype.init = function () {
+      let that = this;
+      let colLength = parseInt(this.$ct.width() / this.$ct.children().eq(0).width());
+      let itemArr = [];
+      for (let i = 0; i < colLength; i++) {
+        itemArr[i] = 0;
+      }
+
+      this.$ct.children().each(function () {
+        let minValue = Math.min.apply(null, itemArr);
+
+        let minIndex = itemArr.indexOf(minValue);
+
+        $(this).css({
+          top: itemArr[minIndex],
+          left: $(this).outerWidth(true) * minIndex
+        });
+
+        itemArr[minIndex] += $(this).outerHeight(true);
+        that.$ct.parent().css({
+          "height": Math.max.apply(null, itemArr) + 100
+        });
+      });
+    };
+
+    return {
+      init: function ($ct) {
+        new waterFull($ct);
+
+      }
+    }
+  })();
+  WaterFull.init($('.waterFullCt'));
+
+  var loadMore = (function () {
+    function _loadMore($ct) {
+      this.$ct = $ct;
+      this.$lm = $('.lm');
+      this.init();
+      this.bind();
+    }
+
+    _loadMore.prototype.init = function () {
+      let curNum = 14;
+      let that = this;
+      this.$lm.click(function (event) {
+        event.preventDefault();
+        that.$lm.hide();
+        $.ajax({
+          url: '/loadMore',
+          dataType: 'json',
+          data: {curNum: curNum}
+        })
+          .done(function (data) {
+            let res = data.randomHs;
+            curNum = data.num;
+            for (let i = 0; i < res.length; i++) {
+              let data = res[i];
+              let num = i + curNum;
+              $(`<div class="item ${data}">${num}</div>`).appendTo(that.$ct)
+            }
+            WaterFull.init($('.waterFullCt'));
+          })
+      });
+    };
+
+    _loadMore.prototype.bind = function () {
+      let that = this;
+
+      $(window).on('scroll', function () {
+        let lastItem = $('.item').length;
+        let bottom = $('.item').eq(lastItem - 1).offset().top;
+        let top = $('.item').eq(0).offset().top;
+        let height = bottom - top + 310;
+        that.$ct.css({
+          "position": "relative",
+          "height": height,
+          "z-index": "-100"
+        });
+        that.$lm.show();
+
+      })
+    };
+
+    return {
+      init: function ($ct) {
+        new _loadMore($ct)
+      }
+    };
+  })();
+  loadMore.init($('.waterFullCt'));
 </script>
 </body>
 </html>

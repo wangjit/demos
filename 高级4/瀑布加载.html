@@ -47,34 +47,31 @@
     }
 
     .loadMore a {
-      /*position: fixed;*/
-      /*bottom: 20px;*/
-      border: 1px solid red;
+      border: 2px solid #bfbfbf;
       text-decoration: none;
-      color: black;
       text-align: center;
-      text-decoration: none;
       width: 59px;
       color: #000000;
       font-size: 13px;
       padding: 10px 0;
-      box-shadow: #bfbfbf 0px 0px 5px 0px;
-      border-width: 2px;
-      border-color: #bfbfbf;
-      border-style: solid;
+      box-shadow: rgb(191,191,191) 0 0 5px 0;
       border-radius: 13px;
-      background-color: rgba(0, 0, 0, 0);
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eef0ea), to(#bfbfbf));
-      opacity: 0.8;
+      opacity: 0.5;
     }
 
     .loadMore a:hover {
       opacity: 1;
     }
+    .test{
+      width: 500px;
+      height: 400px;
+      border: 1px solid;
+    }
   </style>
 </head>
 <body>
-
+<div class="test"></div>
 <div class="content">
   <div class="item h1">1</div>
   <div class="item h3">2</div>
@@ -100,23 +97,26 @@
 
 
   var WaterFull = (function () {
-    function init() {
-      waterfull();
+    function waterFull($ct) {
+      this.$ct = $ct;
+      this.init();
+      let that = this;
       $(window).resize(function () {
-        waterfull();
+        that.init();
       })
     }
 
-    function waterfull() {
-      var colLength = parseInt($('.content').width() / $('.item').width());
-      var itemArr = [];
-      for (var i = 0; i < colLength; i++) {
+    waterFull.prototype.init = function () {
+
+      let colLength = parseInt(this.$ct.width() / this.$ct.children().eq(0).width());
+      let itemArr = [];
+      for (let i = 0; i < colLength; i++) {
         itemArr[i] = 0;
       }
 
-      $('.item').each(function () {
-        var minValue = Math.min.apply(null, itemArr);
-        var minIndex = itemArr.indexOf(minValue);
+      this.$ct.children().each(function () {
+        let minValue = Math.min.apply(null, itemArr);
+        let minIndex = itemArr.indexOf(minValue);
 
         $(this).css({
           top: itemArr[minIndex],
@@ -125,13 +125,15 @@
 
         itemArr[minIndex] += $(this).outerHeight(true);
       });
-    }
+    };
 
     return {
-      init: init
+      init: function ($ct) {
+        new waterFull($ct);
+      }
     }
   })();
-  WaterFull.init();
+  WaterFull.init($('.content'));
 
   var loadMore = (function () {
     function _loadMore($ct) {
@@ -142,8 +144,8 @@
     }
 
     _loadMore.prototype.init = function () {
-      var curNum = 14;
-      var that = this;
+      let curNum = 14;
+      let that = this;
       this.$lm.click(function (event) {
         event.preventDefault();
         that.$lm.hide();
@@ -153,26 +155,28 @@
           data: {curNum: curNum}
         })
           .done(function (data) {
-            var res = data.res;
+            let res = data.randomHs;
             curNum = data.num;
-            for (var i = 0; i < res.length; i++) {
-              var data = res[i];
-              var num = i + curNum;
+            for (let i = 0; i < res.length; i++) {
+              let data = res[i];
+              let num = i + curNum;
               $(`<div class="item ${data}">${num}</div>`).appendTo(that.$ct)
             }
-            WaterFull.init();
+            WaterFull.init($('.content'));
           })
       });
     };
 
     _loadMore.prototype.bind = function () {
-      var that = this;
+      let that = this;
       $(window).on('scroll',function () {
-        var lastItem = $('.item').length;
-        var top = $('.item').eq(lastItem - 1).offset().top + 310;
+        let lastItem = $('.item').length;
+        let bottom = $('.item').eq(lastItem - 1).offset().top ;
+        let top = $('.item').eq(0).offset().top;
+        let height = bottom - top + 310;
         that.$ct.css({
           "position": "relative",
-          "height": top,
+          "height": height,
           "z-index": "-100"
         });
         that.$lm.show();
