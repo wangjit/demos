@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+      .layout {
+      width: 600px;
+      margin: 0 auto;
+      }
+      .fixed {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.4)
+      }
+      .absolute {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        transform: translate(-50%,-50%); 
+        background-color: #fff;
+        box-shadow:0 8px 16px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .absolute>header,.absolute>footer {
+        background-color: #009688;
+        padding: 1px 16px;
+        color: #fff;
+      }
+      .absolute>main {
+        padding:16px;
+      }
+      .absolute>header>span {
+        float: right;
+        margin-top: 16px;
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        top: -61px;
+        font-weight:bold;
+      }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <h1>这是页面内容</h1>
+    <h1>这是页面内容</h1>
+    <h1>这是页面内容</h1>
+    <h1>这是页面内容</h1>
+    <div class="fixed">
+      <div class="absolute">
+        <header>
+          <h3>头部</h3>
+          <span>×</span>
+        </header>
+        <main>
+          <p>这是内容</p>
+          <p>这是内容</p>
+        </main>
+        <footer>
+          <h3>尾部</h3>
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
